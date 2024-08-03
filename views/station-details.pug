@@ -1,0 +1,74 @@
+extends layout.pug 
+
+block content 
+    div(class="station-border")
+        div(class="flex-station-row")
+            div(class="flex-info-box")
+                h3 #{stationName}
+                p Latitude: #{lat}
+                p Longitude: #{lon}
+            div(class="flex-info-box")
+                h3 Wetter 
+                p 850 
+            div(class="flex-info-box")
+                h3 Temperatur 
+                p 20 Grad 
+            div(class="flex-info-box")
+                h3 Wind 
+                p 0.89 bft 
+            div(class="flex-info-box")
+                h3 Luftdruck 
+                p 1016 hpa 
+    table(id="table")
+        tr
+            th Zeitpunkt 
+            th Wetter 
+            th Temperatur 
+            th Windgeschwindigkeit
+            th Windrichtung
+            th Luftdruck 
+            
+        each weather in weathers
+            tr
+                if weather.stationname == stationName
+                    td #{weather.zeitpunkt}
+                    td #{weather.wetter}
+                    td #{weather.temperatur}
+                    td #{weather.windgeschwindigkeit}
+                    td #{weather.windrichtung}
+                    td #{weather.luftdruck}
+                    td 
+                        form(action='/delete-messung' method='post')
+                            input(type='hidden' name='stationname' value=stationName)
+                            input(type='hidden' name='zeitpunkt' value=weather.zeitpunkt)
+                            input(type='hidden' name='lat' value=lat)
+                            input(type='hidden' name='lon' value=lon)
+                            button(type='submit')
+                                svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16")
+                                    path(d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5")
+                                
+
+    .flex-box-inputs
+        form(action='/add-messung' method='post')
+            .form-group 
+                label(for='code') Wettercode:
+                input(type='number' name='code' id='code' required min='499' max='1000')
+            .form-group
+                label(for="temperatur") Temperatur:
+                input(type="number" name="temperatur" id="temperatur" required min='-40' max='60')
+            .form-group
+                label(for="windgeschwindigkeit") Windgeschwindigkeit:
+                input(type="number" name="windgeschwindigkeit" id="windgeschwindigkeit" required min='0' max='200')
+            .form-group 
+                label(for='windrichtung') Windrichtung 
+                input(type='number', name='windrichtung', id='windrichtung' min='0' max='360')
+            .form-group 
+                label(for='luftdruck') Luftdruck 
+                input(type='number', name='luftdruck', id='luftdruck' min='0' max='100')
+                input(type='hidden' name='stationname' value=stationName)
+                input(type='hidden' name='lat' value=lat)
+                input(type='hidden' name='lon' value=lon)
+            button(type="submit") Messung hinzufuegen
+
+    //script(src="/detailsscript.js")
+

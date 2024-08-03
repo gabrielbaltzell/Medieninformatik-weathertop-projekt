@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+    h1 Registration
+    .registration
+        form(action='/register' method='post')
+            .registration-form-group
+                label(for="username") Username:
+                input(type="text" name="username" id="username" placeholder="Enter username" required)
+            .registration-form-group
+                label(for="password") Password:
+                input(type="password" name="password" id="password" placeholder='Enter Password' required)
+            button(type="submit") Register
+    p #{response}

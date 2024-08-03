@@ -1,0 +1,26 @@
+doctype html 
+html 
+    head 
+        link(rel="stylesheet" href="/stylesheets/styles.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css")
+
+
+    header
+    if !session.username
+        div(class="flex-nav-bar")
+            div(class="title") 
+                a(href="/") Weathertop
+            .dashboard 
+                a(href="/register") Register
+    else
+        div(class="flex-nav-bar")
+            div(class="title") 
+                a(href="/") Weathertop
+            div(class="dashboard")
+                a(href="/dashboard") Dashboard
+                form(action='/logout' method='post')
+                    button(type="submit") Logout
+
+
+    body
+        block content

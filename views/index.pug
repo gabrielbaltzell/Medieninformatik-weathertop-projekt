@@ -1,0 +1,16 @@
+extends layout.pug
+
+block content
+    .login-div
+        div(class="weather-splash-image")
+            img(src="images/Weather-Icons.jpg", alt="weather splash image")
+        .login
+            form(action='/login' method='post')
+                .form-group
+                    label(for="username") Username:
+                    input(type="text" name="username" id="username" placeholder="Enter username" required)
+                .form-group
+                    label(for="password") Password:
+                    input(type="password" name="password" id="password" placeholder='Enter Password' required)
+                button(type="submit") Login
+    p #{response}

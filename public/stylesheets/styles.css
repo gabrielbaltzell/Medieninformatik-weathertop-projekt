@@ -1,0 +1,107 @@
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    border-bottom: 1px solid black;
+    text-align: left;
+    padding: 10px;
+}
+
+td {
+    border-bottom: 1px solid grey;
+    text-align: left;
+    padding: 10px;
+}
+
+.flex-nav-bar {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.station-border {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+}
+
+.flex-station-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-info-box {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    padding: 10px 10px 20px 10px;
+    margin: 20px;
+    border-radius: 25px;
+    width: 15%;
+    color: white;
+    background-color: black;
+}
+
+.login-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.registration {
+    display: flex;
+    flex-direction: column;
+}
+.registration-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+button {
+    align-self: last baseline;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.title {
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.dashboard {
+    font-size: 18px;
+    padding: 10px;
+}

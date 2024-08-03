@@ -1,0 +1,50 @@
+extends layout.pug
+
+block content
+    h1 Dashboard
+    div(id="station-layout", class="station-layout")
+        each station in stations
+            .station-border
+                .flex-station-row
+                    .flex-info-box
+                        h3 #{station.stationname}
+                        p Latitude: #{station.latitude}
+                        p Longitude: #{station.longitude}
+                    .flex-info-box
+                        h3 Wetter
+                        p 850
+                    .flex-info-box
+                        h3 Temperatur
+                        p 20 Grad
+                    .flex-info-box
+                        h3 Wind
+                        p 0.89 bft
+                    .flex-info-box
+                        h3 Luftdruck
+                        p 1016 hpa
+                .details 
+                    a(href=`/station-details/${station.stationname}`)
+                        svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16")
+                            path(d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z")
+                            path(d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0")
+                    .trash-button 
+                        form(action='/delete-station' method='post' stationName=station.stationname)
+                            input(type='hidden' name='stationname' value=station.stationname)
+                            button(type='submit')
+                                svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16")
+                                    path(d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5")
+                                
+    form(action='/add-station' method='post')
+        .form-group 
+            label(for='stationname') Name Wetterstation 
+            input(type='text' name='stationname' id='stationname' required)
+        .form-group
+            label(for="latitude") Latitude:
+            input(type="text" name="latitude" id="latitude" required)
+        .form-group
+            label(for="longitude") Longitude:
+            input(type="text" name="longitude" id="longitude" required)
+        button(type="submit") Add Station
+    p #{response}
+
+    //script(src="/dashboardscript.js")
